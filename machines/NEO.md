@@ -1,7 +1,6 @@
 # Machine — NEO
 
-Verified 2026-07-12 (hostname reported `ArcTrooper.local` — if "neo" is a
-different Mac, re-run the probe below there and correct this file).
+Jeremy's MacBook ("the neo"), hostname `ArcTrooper.local`. Verified 2026-07-12.
 
 | Fact | Value |
 |---|---|

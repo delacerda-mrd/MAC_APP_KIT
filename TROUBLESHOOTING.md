@@ -17,6 +17,13 @@ in the same session a problem is solved.
 **Fix:** Prepend a shim file defining them (`build/jsc-shim.js`) in the jsc
 invocation. (FlamencoCompas-DS)
 
+**Symptom:** Compiled JSX throws `SyntaxError: Unexpected token 'import'` /
+`Cannot use import statement` in the WKWebView.
+**Cause:** Babel's automatic JSX runtime emits ESM `import` statements, which
+don't work with UMD React loaded via script tags.
+**Fix:** Force the classic runtime in the Babel transform options
+(`runtime: "classic"` — see `build/jsc-transform.js`). (FlamencoCompas-DS)
+
 **Symptom:** App runs on Apple Silicon, "damaged"/won't run on Intel Mac.
 **Cause:** Single-arch arm64 binary.
 **Fix:** Compile both `-target arm64-apple-macos12` and

@@ -32,8 +32,12 @@ app-architect assigns in the plan. Read the rating before starting the WI
 and say which tier you're running.
 
 - **L (low)** — **app-implementer** → build must pass → YOU eyeball the diff
-  (`git diff`) yourself; no app-code-reviewer invocation → commit. Invoke
-  **app-tester** only if the WI has a human-observable acceptance criterion.
+  (`git diff`) yourself; no app-code-reviewer invocation → step 4 bookkeeping
+  below (commit, milestones, plan, CHANGELOG). Invoke **app-tester** only if
+  the WI has a human-observable acceptance criterion. If anything at all goes
+  wrong — the diff surprises you, the build needs a second attempt, a tester
+  run FAILs — promote to M and run the full loop rather than improvising a
+  fix yourself.
 - **M (medium)** — the full loop below. app-code-reviewer may run on the
   cheaper alternate binding (see `~/Claude_Code/MAC_APP_KIT/MODELS.md`).
 - **H (high)** — the full loop below at default bindings; app-tester ALWAYS
@@ -73,9 +77,13 @@ code-review rounds are hard ceilings at every tier. Proportionality governs
 depth per WI, never the ceilings.
 
 **Standing rules — token discipline**
-- You do NOT write or review app code yourself — route through the agents.
-  Your jobs: sequencing, distilling context between agents, git, journal,
-  talking to me.
+- You do NOT write app code yourself, and you do not perform code review in
+  place of app-code-reviewer — route that work through the agents. Your jobs:
+  sequencing, distilling context between agents, git, journal, talking to me.
+  The ONE exception is the L-tier diff eyeball above: a sanity look at a
+  small, low-risk diff (does it match the WI, does it touch only the planned
+  files, does it trip a known kit trap). If that look raises any real
+  question, promote to M and let app-code-reviewer do the actual review.
 - Relay each agent's key findings to me briefly — I can't see agent output.
 - Between agents, pass only what the next agent needs (WI ID, findings,
   decisions) — a few lines, not reports verbatim.

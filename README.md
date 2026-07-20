@@ -20,7 +20,8 @@ project's CLAUDE.md).
 | `PLAYBOOK.md` | Stack decision tree + build patterns (read before planning) |
 | `TROUBLESHOOTING.md` | Symptom-indexed solved problems — never re-derive these |
 | `machines/` | Verified per-machine toolchain facts (ArcTrooper.md, template; one file per physical machine, named by `hostname -s`) |
-| `recipes/` | Copy-verbatim build/config patterns |
+| `recipes/` | Copy-verbatim build/config patterns (Stack A shell; Stack A-G game loop) |
+| `MODELS.md` | Role→model registry — the only place bindings are set |
 | `flows/` | Step-by-step procedures /app routes to |
 | `templates/` | Skeletons instantiated into new projects |
 | `agents/` | Master copies of the `app-*` pipeline agents |

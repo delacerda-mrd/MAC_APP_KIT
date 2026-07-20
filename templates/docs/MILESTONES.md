@@ -15,6 +15,14 @@ verification). Trim/extend this list to match the spec before first commit.
 {{One line per SPEC §2 capability, added when trimming this template}}
 - [ ] …
 
+## Phase 2b — Game loop {{delete if not a game}}
+- [ ] 60 s of continuous play with no frame > 33 ms (measured, not eyeballed)
+- [ ] Pause/resume works: window hidden → game halts → returns without a
+      state jump or lost time
+- [ ] Entity ceiling from SPEC §5b sustained at the target frame time
+- [ ] Input latency meets SPEC §5b (key press → visible response)
+- [ ] Game state survives relaunch (persistence verified, not assumed)
+
 ## Phase 3 — Ship quality
 - [ ] All SPEC §5 targets measured and met
 - [ ] Persistence survives relaunch {{if applicable}}

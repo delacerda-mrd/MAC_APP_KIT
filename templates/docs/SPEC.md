@@ -25,6 +25,18 @@ Language: {{e.g. Spanish}}. {{Any fixed terminology.}}
 
 - {{e.g. audio scheduling jitter < 10 ms; launch < 2 s; bundle < 50 MB}}
 
+## 5b. Game loop & feel
+
+*(Optional — delete this section if not a game. See
+`~/Claude_Code/MAC_APP_KIT/recipes/stack-a-game.md`.)*
+
+- **Tick rate:** {{e.g. 60 Hz fixed timestep, decoupled from render}}
+- **Frame budget:** {{e.g. no frame > 33 ms during normal play}}
+- **Entity ceiling:** {{how many simultaneous entities the loop must sustain}}
+- **Input latency target:** {{e.g. key press → visible response < 50 ms}}
+- **Pause behavior:** {{what happens on window blur/hide; what resumes}}
+- **Difficulty knobs:** {{speeds, spawn rates, lives — the numbers, not adjectives}}
+
 ## 6. Platform requirements
 
 - Machines/arch: {{arm64 only, or universal}}; min macOS {{12}}

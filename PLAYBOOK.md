@@ -9,14 +9,23 @@ new runtime dependencies, apps must work fully offline.
 
 Decision tree, in order:
 
-1. **Rich/animated UI, canvas, audio, rapid iteration?** → **Stack A:
+1. **Real-time game (canvas rendering, game loop, input latency matters)?**
+   → **Stack A-G: WKWebView + canvas game loop** — Stack A's shell with a
+   `<canvas>` + `requestAnimationFrame` loop instead of React UI. Same
+   `app://` scheme, same audio traps, same build pipeline (set
+   `SANITY_GREP=""` in build.sh for a vanilla-JS game). React optional, for
+   menus only; the game loop itself is vanilla JS. See
+   `recipes/stack-a-game.md`.
+   SpriteKit/Metal via `swiftc` is **UNPROVEN** on these machines — treat it
+   as a discovery project, not an available option.
+2. **Rich/animated UI, canvas, audio, rapid iteration?** → **Stack A:
    WKWebView shell** (the FlamencoCompas pattern). React-style UI in a single
    JSX file, precompiled to plain JS at build time with the system `jsc`
    running a bundled `babel.min.js`. Swift shell ≈150 lines.
-2. **Native look, menus, small utility UI?** → **Stack B: pure SwiftUI**
+3. **Native look, menus, small utility UI?** → **Stack B: pure SwiftUI**
    compiled with `swiftc` directly (no .xcodeproj). Best when the UI is
    forms/lists/controls, not custom drawing.
-3. **No GUI needed?** → **Stack C: CLI tool** — single Swift file or
+4. **No GUI needed?** → **Stack C: CLI tool** — single Swift file or
    python3 script; skip the app-bundle machinery.
 
 When in doubt between A and B: A iterates faster and is fully proven

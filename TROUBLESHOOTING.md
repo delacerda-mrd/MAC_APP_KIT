@@ -30,6 +30,24 @@ don't work with UMD React loaded via script tags.
 `-target x86_64-apple-macos12`, `lipo -create` into a universal binary.
 (FlamencoCompas-DS v1.1.0)
 
+**Symptom:** Universal build's x86_64 `swiftc` link step fails with
+`Undefined symbols for architecture x86_64: "__swift_FORCE_LOAD_$_swiftCompatibility56"`
+(plus warnings that `libswiftCompatibility56.a`/`libswiftCompatibilityPacks.a`
+are "fat file missing arch 'x86_64'").
+**Cause:** On newer Command Line Tools/SDKs (seen on macOS 27 beta,
+Swift 6.4 CLT), Apple ships the Swift back-deployment compatibility static
+libs without an x86_64 slice, so the x86_64 cross-compile fails at link time
+even though the arm64 build is fine. Reproduced on the stock, unmodified
+`stack-a-files/build.sh`/`main.swift` (FlamencoCompas-DS's own build.sh also
+fails identically on this toolchain).
+**Fix:** Add `-runtime-compatibility-version none` to BOTH `swiftc` invocations
+in `build.sh` (arm64 and x86_64 targets) — this skips linking the back-deploy
+compatibility shims that are missing an x86_64 slice. Verified both arch
+slices still compile and `lipo -create` produces a working universal binary.
+(Nancy's Menu WI-2, machine ArcTrooper — then documented as NEO — after a
+Command Line Tools update to macOS 27 beta / Swift 6.4 — see
+`machines/ArcTrooper.md`.)
+
 ## WKWebView
 
 **Symptom:** `fetch()` of a bundled asset rejects/fails silently.

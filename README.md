@@ -19,7 +19,7 @@ project's CLAUDE.md).
 |---|---|
 | `PLAYBOOK.md` | Stack decision tree + build patterns (read before planning) |
 | `TROUBLESHOOTING.md` | Symptom-indexed solved problems — never re-derive these |
-| `machines/` | Verified per-machine toolchain facts (NEO.md, template) |
+| `machines/` | Verified per-machine toolchain facts (ArcTrooper.md, template; one file per physical machine, named by `hostname -s`) |
 | `recipes/` | Copy-verbatim build/config patterns |
 | `flows/` | Step-by-step procedures /app routes to |
 | `templates/` | Skeletons instantiated into new projects |

@@ -1,27 +1,53 @@
 # Recipe — Stack A: WKWebView shell (proven, copy verbatim)
 
-Source of these files: FlamencoCompas-DS v1.1.0
-(`~/Claude_Code/Spencer_Compas_DS`), working on macOS 26 / Swift 6.3,
-universal binary, fully offline. Start every Stack A project from
-`recipes/stack-a-files/`, then adapt names/assets — do NOT rewrite them
-from scratch.
+Provenance: FlamencoCompas-DS v1.1.0 (originally `~/Claude_Code/Spencer_Compas_DS`),
+working on macOS 26 / Swift 6.3 and re-verified on macOS 27 beta / Swift 6.4,
+universal binary, fully offline. The kit is **self-contained**: every file a
+Stack A project needs is inside `recipes/stack-a-files/` — no sibling project
+directory is required. Start every Stack A project from these files, then
+adapt the parameters below — do NOT rewrite them from scratch.
 
-## Files
+## Standing rule — recipes track TROUBLESHOOTING.md
 
-- `stack-a-files/build.sh` — full pipeline: jsc+babel compile of
-  `src/app.jsx`, .app bundle assembly, per-arch swiftc + `lipo`, ad-hoc
-  codesign. Adapt: app name, bundle id, asset copy list.
-- `stack-a-files/main.swift` — WKWebView shell with the `app://`
-  URLSchemeHandler (the fetch()-under-file:// fix), window, menu, quit.
-  Adapt: window title/size, bundle resource lookups.
-- `stack-a-files/jsc-shim.js` + `jsc-transform.js` — the console/window shim
-  and Babel driver for the system jsc. Use unchanged.
+When a TROUBLESHOOTING.md fix touches a recipe file, the recipe master gets
+patched in the same session. A recipe that contradicts TROUBLESHOOTING.md is
+a kit bug.
 
-## Also needed
+## Files (all in `stack-a-files/`)
 
-- `vendor/babel.min.js` — copy from
-  `~/Claude_Code/Spencer_Compas_DS/vendor/babel.min.js` (offline JSX
-  compiler; ~2 MB, bundled per-project, never fetched from a CDN).
+Project layout they instantiate into (see PLAYBOOK.md Step 2): `build.sh`,
+`jsc-shim.js`, `jsc-transform.js`, `main.swift`, `Info.plist.template` →
+project `build/`; `index.html` → project `src/`; `vendor/` → project
+`vendor/`. Also create a `VERSION` file (`echo 0.0.0 > VERSION`) — build.sh
+reads it.
+
+- `build.sh` — full pipeline: jsc+babel compile of `src/app.jsx`, .app bundle
+  assembly, per-arch swiftc + `lipo` (with `-runtime-compatibility-version
+  none`, required — see TROUBLESHOOTING.md "Build / toolchain"), ad-hoc
+  codesign. **Adapt the parameter block at the top:**
+  - `APPNAME` — .app name, binary name, CFBundleName (sed'd into
+    Info.plist and index.html)
+  - `BUNDLE_ID` — CFBundleIdentifier
+  - `ASSETS` — array of bundled files copied into `Resources/` (empty for
+    asset-less apps)
+  - `SANITY_GREP` — string the compiled `app.js` must contain
+    (`ReactDOM.createRoot` for React apps; set `""` to skip for
+    non-React/vanilla-canvas apps)
+- `main.swift` — WKWebView shell with the `app://` URLSchemeHandler (the
+  fetch()-under-file:// fix), window, menu, quit. Adapt: window title/size,
+  menu item labels, bundle resource lookups.
+- `Info.plist.template` — placeholders `__APPNAME__`, `__BUNDLE_ID__`,
+  `__VERSION__` are filled by build.sh. Adapt: nothing, normally.
+- `index.html` — minimal skeleton loading react, react-dom, and the compiled
+  `app.js` via relative URLs under the `app://` scheme; `__APPNAME__` in the
+  title is filled by build.sh. Adapt: `lang` attribute (match the spec's UI
+  language), extra script/style tags if the app needs them.
+- `jsc-shim.js` + `jsc-transform.js` — the console/window shim and Babel
+  driver for the system jsc. Use unchanged.
+- `vendor/` — `babel.min.js`, `react.production.min.js`,
+  `react-dom.production.min.js`, vendored into the kit with versions and
+  SHA-256 hashes in `vendor/MANIFEST.md`. Copy per-project; never fetch from
+  a CDN.
 
 ## In-app patterns (enforced by TROUBLESHOOTING.md)
 

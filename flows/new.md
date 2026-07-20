@@ -6,7 +6,7 @@ using `~/Claude_Code/MAC_APP_KIT/templates/`. Follow exactly.
 ## Step 1 — Gather facts
 
 Read `~/Claude_Code/MAC_APP_KIT/PLAYBOOK.md` and the machine ref
-(`machines/NEO.md` or the one matching `hostname`; if none matches, run the
+(the `machines/` file matching `hostname -s`; if none matches, run the
 probe in `_TEMPLATE_MACHINE.md` and create it).
 
 **Interview for the spec** — ask until `templates/docs/SPEC.md` can be

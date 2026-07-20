@@ -44,6 +44,9 @@ fails identically on this toolchain).
 in `build.sh` (arm64 and x86_64 targets) — this skips linking the back-deploy
 compatibility shims that are missing an x86_64 slice. Verified both arch
 slices still compile and `lipo -create` produces a working universal binary.
+The kit's recipe master (`recipes/stack-a-files/build.sh`) already carries
+this flag (2026-07-19) — this entry applies to pre-kit projects and any
+build.sh not generated from the recipe.
 (Nancy's Menu WI-2, machine ArcTrooper — then documented as NEO — after a
 Command Line Tools update to macOS 27 beta / Swift 6.4 — see
 `machines/ArcTrooper.md`.)

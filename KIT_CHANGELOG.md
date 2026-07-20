@@ -3,6 +3,18 @@
 Every kit-modifying session appends a dated entry here: what changed, and
 which project session prompted it. Newest first.
 
+## 2026-07-20 — Re-audit follow-up (prompted by: direct maintenance session on ArcTrooper)
+
+13-point coherence audit of the post-overhaul kit: 12 checks passed, one
+minor defect fixed.
+
+- **TROUBLESHOOTING runtime-compat entry now points at the recipe master.**
+  The entry read as an instruction to add `-runtime-compatibility-version none`
+  to build.sh, but `recipes/stack-a-files/build.sh` has carried the flag since
+  2026-07-19. Noted that the entry applies to pre-kit projects and any build.sh
+  not generated from the recipe, so nobody re-applies it or assumes the recipe
+  is stale.
+
 ## 2026-07-19 — Kit overhaul (prompted by: direct maintenance session on ArcTrooper)
 
 Audit-driven redesign pass on the kit itself, not on any app project.

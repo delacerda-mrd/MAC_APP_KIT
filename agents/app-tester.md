@@ -30,6 +30,13 @@ the WI ID in your prompt — against its acceptance criteria in
 When the orchestrator brings you the human's observations, map them to the
 criteria and give the final verdict.
 
+## Proportional verification
+
+Verification effort scales with evidence stability. If a failure reproduces
+identically 3 times, 3 runs is enough — do not run 10. If it is intermittent,
+keep going until you have either a reproduction recipe or 10 attempts, then
+report the flake rate. State how many runs you did and why that number.
+
 ## Verdict — end with exactly one of
 - `PASS` — every criterion verified (say how each was verified).
 - `FAIL` — evidence package: the failing step, exact output/log lines, build

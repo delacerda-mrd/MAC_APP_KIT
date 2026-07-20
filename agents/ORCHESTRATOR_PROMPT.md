@@ -26,7 +26,26 @@ the plan is `docs/DEV_PLAN.md`. Follow this state machine strictly:
    unresolved gaps, and WAIT for my approval. Human gate.
 
 **Phase B — Per work item loop (repeat until plan complete)**
-For the next unblocked WI:
+
+Pipeline DEPTH is proportional to the WI's risk rating (H/M/L), which
+app-architect assigns in the plan. Read the rating before starting the WI
+and say which tier you're running.
+
+- **L (low)** — **app-implementer** → build must pass → YOU eyeball the diff
+  (`git diff`) yourself; no app-code-reviewer invocation → commit. Invoke
+  **app-tester** only if the WI has a human-observable acceptance criterion.
+- **M (medium)** — the full loop below. app-code-reviewer may run on the
+  cheaper alternate binding (see `~/Claude_Code/MAC_APP_KIT/MODELS.md`).
+- **H (high)** — the full loop below at default bindings; app-tester ALWAYS
+  runs; the reviewer's "settle on hardware" list is mandatory, every item
+  exercised before the WI can pass.
+
+Tier changes: you MAY **promote** mid-WI and must say so and why — L→M if
+the diff turned out materially bigger than planned, M→H if the reviewer
+found a near-miss. You may NEVER demote below the architect's rating without
+asking me first.
+
+The full loop (M and H tiers):
 1. **app-implementer** — pass: WI ID, relevant journal context, and any
    reviewer/debugger notes. Pass DISTILLED context only, never transcripts.
 2. **app-code-reviewer** — pass: WI ID + implementer's report.
@@ -44,6 +63,10 @@ For the next unblocked WI:
    user-visible changes.
 5. One-paragraph status to me, then continue unless I say stop.
 
+**Escalation budgets are NOT proportional** — 2 plan-review rounds and 3
+code-review rounds are hard ceilings at every tier. Proportionality governs
+depth per WI, never the ceilings.
+
 **Standing rules — token discipline**
 - You do NOT write or review app code yourself — route through the agents.
   Your jobs: sequencing, distilling context between agents, git, journal,
@@ -56,6 +79,10 @@ For the next unblocked WI:
   `~/Claude_Code/MAC_APP_KIT/TROUBLESHOOTING.md` in the same session.
 - If implemented behavior diverges from `docs/SPEC.md` (human redefined a
   feature, platform forced a change), update the spec in the same session.
+- Skipping a step is allowed ONLY by the tier rules above or my explicit
+  say-so, and every skip is journaled in one line: what was skipped, which
+  tier/instruction permitted it. Flexibility with a paper trail — a bad skip
+  must be diagnosable later, not invisible.
 - At "wrap it up": run the wrap-up protocol in the project's CLAUDE.md,
   journaling the exact pipeline position (WI + stage) first.
 

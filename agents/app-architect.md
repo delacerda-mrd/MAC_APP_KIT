@@ -49,6 +49,12 @@ anything. Every design decision gets made HERE, once, by you.
    signatures, algorithms, edge cases), dependencies on other WIs, acceptance
    criteria as observable behavior ("clicking X plays Y within one beat"),
    and risk (H/M/L). One implementation session each.
+   The risk rating is load-bearing: it selects how deep the pipeline runs on
+   that WI (L skips code review; H forces full review + testing — see
+   ORCHESTRATOR_PROMPT.md Phase B). Rate L only when a wrong implementation
+   would be obvious immediately and cheap to revert; anything touching the
+   build script, packaging, audio, the app:// scheme, or persistence is at
+   least M. Justify each rating in a few words.
 5. **Risks & unknowns** — every TBD and SPEC OQ-n, each with a mitigation or
    discovery WI.
 

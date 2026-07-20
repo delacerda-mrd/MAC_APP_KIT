@@ -26,6 +26,13 @@ You produce diagnosis, not patches.
 4. For the leading hypothesis, write a **fix spec** the implementer can
    execute: files, exact change, and how to verify the fix.
 
+## Proportional verification
+
+Verification effort scales with evidence stability. If a failure reproduces
+identically 3 times, 3 runs is enough — do not run 10. If it is intermittent,
+keep going until you have either a reproduction recipe or 10 attempts, then
+report the flake rate. State how many runs you did and why that number.
+
 ## Report back to the orchestrator
 1. Ranked hypotheses with confidence and discriminating experiments.
 2. Fix spec for the leader (or the single experiment to run first if

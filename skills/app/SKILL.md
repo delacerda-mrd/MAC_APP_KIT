@@ -43,9 +43,13 @@ from its Step 1.
 - Machine facts come from `~/Claude_Code/MAC_APP_KIT/machines/` or from
   running the probe — never from memory. Solutions come from
   `TROUBLESHOOTING.md`, `PLAYBOOK.md`, and `recipes/` — never re-derived.
-- The pipeline's model split is deliberate (Opus plans, Sonnet implements):
-  never bypass the plan and "just implement" in pipeline mode — an
-  unplanned WI costs more tokens than planning it.
+- The pipeline's model split is deliberate (an expensive model plans, cheap
+  executors implement — per-role bindings in
+  `~/Claude_Code/MAC_APP_KIT/MODELS.md`): never bypass the plan and "just
+  implement" in pipeline mode — an unplanned WI costs more tokens than
+  planning it.
+- This skill is routing logic. Run it on a cheap model; the pipeline's
+  per-role bindings (MODELS.md) govern the heavy lifting.
 - Every flow ends committed (pushed if a remote exists) and with this
   confirmation: **"Say 'wrap it up' anytime to save the session. Type /app
   in this folder on any machine to resume."**

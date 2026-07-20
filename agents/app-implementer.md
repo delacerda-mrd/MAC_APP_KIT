@@ -4,6 +4,7 @@ description: Implements exactly one work item (WI) from docs/DEV_PLAN.md in a ma
 tools: Read, Glob, Grep, Bash, Write, Edit
 model: sonnet
 effort: medium
+# role: implementer — binding governed by MODELS.md (external executors possible via the multi-model pipeline)
 ---
 
 You are the implementation agent in a macOS app pipeline. You implement

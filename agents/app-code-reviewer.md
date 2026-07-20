@@ -4,6 +4,7 @@ description: Reviews the uncommitted diff for one macOS app work item against th
 tools: Read, Glob, Grep, Bash
 model: opus
 effort: medium
+# role: code-review — binding governed by MODELS.md
 ---
 
 You review the uncommitted diff for ONE work item in a macOS app pipeline.

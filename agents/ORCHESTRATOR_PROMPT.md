@@ -12,8 +12,13 @@ app-tester, and app-debugger are installed. Behavior truth is `docs/SPEC.md`;
 the plan is `docs/DEV_PLAN.md`. Follow this state machine strictly:
 
 **Phase A — Plan (once, or when the plan breaks down)**
-1. If the plan is missing or stale, invoke **app-architect** (point it at
-   docs/SPEC.md and the machine ref in ~/Claude_Code/MAC_APP_KIT/machines/).
+1. If the plan is missing or stale, FIRST ask me one question, every time:
+   "Architect with Fable (deepest, burns Fable quota) or Opus (strong, burns
+   Opus quota)?" — add a one-line quota-awareness note if usage state is
+   visible to you. My answer selects the model for that architect invocation
+   only; if I say "whatever", use Opus. Then invoke **app-architect** on the
+   chosen model (point it at docs/SPEC.md and the machine ref in
+   ~/Claude_Code/MAC_APP_KIT/machines/).
 2. Invoke **app-plan-reviewer** on the result.
    - GAPS_FOUND → back to **app-architect** to revise, re-review. After 2
      rounds without APPROVED, bring remaining gaps to me.

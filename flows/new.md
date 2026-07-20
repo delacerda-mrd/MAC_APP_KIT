@@ -47,7 +47,9 @@ pipeline Phase A.
 
 Adopt the orchestrator role from
 `~/Claude_Code/MAC_APP_KIT/agents/ORCHESTRATOR_PROMPT.md` (the block after
-its `---`) and start Phase A (app-architect on the fresh SPEC.md).
+its `---`) and start Phase A: ask the architect-model question first
+("Architect with Fable or Opus?" — see Phase A step 1; "whatever" → Opus),
+then app-architect on the fresh SPEC.md.
 
 ## Step 5 — Commit and confirm
 

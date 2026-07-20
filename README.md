@@ -29,18 +29,20 @@ project's CLAUDE.md).
 ## The agent pipeline & model assignments
 
 Token strategy: spend the expensive model **once, up front, on the plan** so
-the cheap workhorse (Sonnet) can implement without exploration; spend it
-again only on judgment-heavy gates (review, debugging). Effort is set per
-agent, not globally.
+cheap implementers can execute without exploration; spend it again only on
+judgment-heavy gates (review, debugging). Effort is set per role, not
+globally.
 
-| Agent | Model / effort | Why |
-|---|---|---|
-| app-architect | opus / high | Runs 1–2× per project. Plan quality is what makes Sonnet cheap downstream — every WI must be executable without re-derivation. |
-| app-plan-reviewer | sonnet / high | Checklist-driven ambiguity hunt over one doc; small context, high thinking is cheap here. |
-| app-implementer | **sonnet / medium** | The workhorse, most invocations. The plan carries the intelligence; medium effort keeps per-WI cost low. |
-| app-code-reviewer | opus / medium | Catching subtle correctness bugs needs ability more than long deliberation on a scoped diff. |
-| app-tester | sonnet / low | Mechanical: build, launch, write the human test procedure. |
-| app-debugger | opus / high | Rare, hardest cognitive task; worth full spend when invoked. |
+Model assignments are ROLES bound in **`MODELS.md`** (the single registry —
+architect, plan-review, implementer, code-review, tester, debugger, skill).
+Agent frontmatter carries a concrete model that mirrors the registry; edit
+MODELS.md + frontmatter together and rerun `install.sh`. Implementation may
+run on Claude models OR external cheap executors (MiMo-V2.5,
+DeepSeek V4 Flash) via the multi-model pipeline; plans are therefore written
+to be executable by the CHEAPEST model in the implementer rotation — a
+MiMo-V2.5-class executor: excellent at literal code-gen, tool calls, and
+diff discipline; weak at unstated assumptions, cross-file inference, and
+recovering from ambiguity. A plan that passes that bar runs on anything.
 
 The main session is the **orchestrator** (`agents/ORCHESTRATOR_PROMPT.md`):
 it sequences agents, distills context between them (never pastes whole

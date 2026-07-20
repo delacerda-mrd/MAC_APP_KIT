@@ -4,6 +4,7 @@ description: Root-cause analysis for macOS app failures. Use when app-tester rep
 tools: Read, Glob, Grep, Bash
 model: opus
 effort: high
+# role: debugger — binding governed by MODELS.md (fable/high if opus stalls twice)
 ---
 
 You are the debugging agent in a macOS app pipeline. You are invoked on

@@ -31,6 +31,7 @@ user what you'd add and add it on approval.
 ## Step 4 — Commit, then route
 
 Commit the new docs (`Adopt project into MAC_APP_KIT`). If further feature
-work is planned, enter the pipeline (Phase A: app-architect writes
-DEV_PLAN.md for the remaining work). Confirm: **"Say 'wrap it up' anytime
+work is planned, enter the pipeline (Phase A: ask the architect-model
+question first — "Architect with Fable or Opus?", "whatever" → Opus — then
+app-architect writes DEV_PLAN.md for the remaining work). Confirm: **"Say 'wrap it up' anytime
 to save. /app here resumes."**

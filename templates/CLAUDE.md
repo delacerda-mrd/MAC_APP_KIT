@@ -47,6 +47,26 @@ open dist/{{APP_NAME}}.app     # manual testing
    git tag vX.Y.Z`, push if a remote exists.
 6. Report what was saved and the version, then stop.
 
+### Post-project retro (only at the LAST milestone)
+
+When the project reaches its final `docs/MILESTONES.md` item, run a
+10-minute retro BEFORE the normal wrap-up. Three questions, answered
+honestly and journaled **to the kit, not to this project**
+(`~/Claude_Code/MAC_APP_KIT/KIT_CHANGELOG.md`, plus the specific file each
+answer belongs in):
+
+1. What did the pipeline waste tokens on? (a tier that was too deep, an
+   agent re-reading what it was already given, a review round that found
+   nothing)
+2. What did an agent get wrong that a KIT RULE would have prevented? → the
+   rule goes in the agent master or ORCHESTRATOR_PROMPT.md.
+3. What recipe or trap should be added? → `recipes/` or
+   `TROUBLESHOOTING.md`, with this project named as provenance.
+
+Commit and push the kit changes in the same session. This retro is the
+mechanism that grew the kit in the first place — running it deliberately is
+the difference between the kit improving and the kit drifting.
+
 ## Known traps (project-specific — kit-generic ones live in the kit)
 
 - {{add as discovered}}

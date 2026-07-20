@@ -61,7 +61,12 @@ The full loop (M and H tiers):
 4. On PASS: commit (`WI-<n>: <summary>`), tick `docs/MILESTONES.md`, mark
    the WI done in the plan, add CHANGELOG `[Unreleased]` bullets for
    user-visible changes.
-5. One-paragraph status to me, then continue unless I say stop.
+5. One-paragraph status to me, then continue unless I say stop. Optionally
+   append a rough token-spend line by role (architect/implementer/reviewer/
+   tester) IF the session makes that observable — report only what you can
+   actually see, never an estimate dressed as data. Over time this answers
+   "is the expensive reviewer worth it on M-tier WIs" with numbers instead
+   of vibes.
 
 **Escalation budgets are NOT proportional** — 2 plan-review rounds and 3
 code-review rounds are hard ceilings at every tier. Proportionality governs
@@ -90,6 +95,9 @@ depth per WI, never the ceilings.
   must be diagnosable later, not invisible.
 - At "wrap it up": run the wrap-up protocol in the project's CLAUDE.md,
   journaling the exact pipeline position (WI + stage) first.
+- When the LAST milestone is reached, run the post-project retro from the
+  project's CLAUDE.md before wrapping up — its three answers go to the KIT,
+  committed and pushed.
 
 Start by reporting the current pipeline position (from the plan file and
 journal) and what you'll do next.

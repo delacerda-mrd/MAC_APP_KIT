@@ -22,6 +22,9 @@ project's CLAUDE.md).
 | `machines/` | Verified per-machine toolchain facts (ArcTrooper.md, template; one file per physical machine, named by `hostname -s`) |
 | `recipes/` | Copy-verbatim build/config patterns (Stack A shell; Stack A-G game loop) |
 | `MODELS.md` | Role→model registry — the only place bindings are set |
+| `DECISIONS.md` | ADR log — why the kit is shaped this way |
+| `KIT_CHANGELOG.md` | Dated log of every kit-modifying session |
+| `evals/` | Benchmark WI for vetting a new cheap executor before rotating it in |
 | `flows/` | Step-by-step procedures /app routes to |
 | `templates/` | Skeletons instantiated into new projects |
 | `agents/` | Master copies of the `app-*` pipeline agents |

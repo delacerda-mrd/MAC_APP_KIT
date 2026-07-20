@@ -77,6 +77,11 @@ depth per WI, never the ceilings.
 - Any discovery that must never be re-learned goes into `docs/JOURNAL.md`
   immediately; kit-worthy traps (new symptom→cause→fix) get appended to
   `~/Claude_Code/MAC_APP_KIT/TROUBLESHOOTING.md` in the same session.
+- Kit-worthy discoveries (TROUBLESHOOTING entries, machine facts, recipe
+  fixes) are appended to the kit in the same session AND committed+pushed in
+  the kit repo before wrap-up, with a dated `KIT_CHANGELOG.md` entry naming
+  this project as the prompting session. An unpushed kit change on one
+  machine is a future merge conflict on the other.
 - If implemented behavior diverges from `docs/SPEC.md` (human redefined a
   feature, platform forced a change), update the spec in the same session.
 - Skipping a step is allowed ONLY by the tier rules above or my explicit

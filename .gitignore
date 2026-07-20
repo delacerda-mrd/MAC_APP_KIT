@@ -1,1 +1,11 @@
 .DS_Store
+
+# Secrets hygiene — this repo is pushed to a remote. Nothing with credentials
+# ever gets committed. Do not remove these lines to "fix" a missing file.
+.claude/settings.local.json
+*.pem
+*.key
+.env
+.env.*
+*credentials*
+*secret*
